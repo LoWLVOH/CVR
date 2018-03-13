@@ -4,7 +4,13 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 import WelcomeScreen from './screens/WelcomeScreen';
+import {Provider} from 'react-redux';
+import {combineReducers, createStore}  from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
+
+var globalReducers = combineReducers({form: formReducer});
+const store = createStore(globalReducers);
 
 
 export default class App extends React.Component {
@@ -31,12 +37,16 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {display}
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
 
-        </View>
+        <Provider store={store}>
+          <View style={styles.container}>
+            {display}
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+            <RootNavigation />
+          </View>
+        </Provider>
+
       );
     }
   }
