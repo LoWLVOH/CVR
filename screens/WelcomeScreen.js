@@ -1,27 +1,55 @@
 import React from 'react';
 import {
-  Image,
+  ImageBackground,
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-import WelcomeScreen from './WelcomeScreen'
-import { MonoText } from '../components/StyledText';
+import { Text,Button } from 'react-native-elements';
 
-export default class HomeScreen extends React.Component {
+export default class WelcomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
+
   render() {
     return (
-      <View style={styles.container}>
-        
-      </View>
+      <ImageBackground style={{flex: 1}} source={require('../assets/images/Welcome.jpg')}>
+        <View style={{flex:1,justifyContent: 'center',alignItems: 'center', marginBottom: 500 }}>
+          <Text h1 style={{color: "#D81159"}}>ChoisiVersaire</Text>
+          <Text h3 style={{color: "#D81159"}}>Choisi ton Anni!!!</Text>
+        </View>
+        <View style={{flex: 0, flexDirection: 'row', justifyContent: 'space-around', marginBottom: 45}}>
+        <Button
+    onClick={this.signUp}
+    title="SIGN UP"
+    titleStyle={{ fontWeight: "700" }}
+    buttonStyle={{
+    backgroundColor: "#D81159",
+    width: 120,
+    height: 45,
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
+
+    }} />
+      <Button
+    onClick={this.signIn}
+    title="SIGN IN"
+    titleStyle={{ fontWeight: "700" }}
+    buttonStyle={{
+    backgroundColor: "#D81159",
+    width: 120,
+    height: 45,
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
+    }} />
+    </View>
+      </ImageBackground>
     );
   }
 }
@@ -30,6 +58,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   developmentModeText: {
     marginBottom: 20,
