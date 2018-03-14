@@ -45,7 +45,6 @@ export default reduxForm({
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    // backgroundColor: '',
     justifyContent: 'center',
   },
 });
