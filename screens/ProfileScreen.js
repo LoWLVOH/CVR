@@ -7,6 +7,6 @@ export default class ProfileScreen extends React.Component {
   };
 
   render() {
-    return <ExpoConfigView />;
+    return <ExpoConfigView />
   }
 }

@@ -13,10 +13,9 @@
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
     "react-native-elements": "^1.0.0-beta3",
-<<<<<<< HEAD
-=======
+
     "react-native-is-iphonex": "^1.0.1",
->>>>>>> 14a186ceaa4e01255aaf6ea7b4bfbe41cf2b0bb9
+
     "react-navigation": "^1.0.0-beta.27",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
