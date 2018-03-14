@@ -1,116 +1,87 @@
-import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, { Component } from 'react';
+import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, Avatar } from 'react-native';
+import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import { List, ListItem } from 'react-native-elements';
 import { WebBrowser } from 'expo';
+import {connect} from 'react-redux';
 import WelcomeScreen from './WelcomeScreen'
 import { MonoText } from '../components/StyledText';
+
 
 export default class EvenementScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+//
+//   state = {
+//       messages: [],
+//     }
+//
+//     componentWillMount() {
+//       this.setState({
+//         messages: [
+//           {
+//             _id: 1,
+//             text: 'Hello developer',
+//             createdAt: new Date(),
+//             user: {
+//               _id: 2,
+//               name: 'React Native',
+//               avatar: 'https://facebook.github.io/react/img/logo_og.png',
+//             },
+//           },
+//         ],
+//       })
+//     }
+//
+//     onSend(messages = []) {
+//       this.setState(previousState => ({
+//         messages: GiftedChat.append(previousState.messages, messages),
+//       }))
+//     }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        
-      </View>
-    );
+
+  render () {
+  return (
+    <Container>
+       <Header />
+       <Content>
+         <List>
+           <ListItem>
+             <Thumbnail rounded size={50} source={{ uri: ' photo utilisateur ' }} />
+             <Body>
+               <Text> Star Foula </Text>
+               <Text note> Anniversaire prévue le : </Text>
+               <Button
+                 onPress={this.props.onHandleClick()}
+                 title="Créer une conversation"
+                 titleStyle={{ fontWeight: "700" }}
+                 buttonStyle={{
+                 backgroundColor: "#fff",
+                 borderColor: "transparent",
+                 borderWidth: 0,
+                 borderRadius: 5,}}
+               />
+               {/* <GiftedChat
+                 messages={this.state.messages}
+                 onSend={messages => this.onSend(messages)}
+                 user={{
+                   _id: 1,
+                 }}
+               /> */}
+             </Body>
+           </ListItem>
+         </List>
+       </Content>
+    </Container>
+   )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 15,
     backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  }
 });
