@@ -1,10 +1,11 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { AppRegistry,StyleSheet,ScrollView, View } from 'react-native';
+import {StyleSheet, View } from 'react-native';
 
 import ProfileHeader from '../components/profil/component/profilHeader';
 import Bar from '../components/profil/component/bar';
 import Post from '../components/profil/component/post';
+
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -20,6 +21,7 @@ export default class ProfileScreen extends React.Component {
         <Post />
       </View>
     );
+
   }
 }
 
@@ -29,5 +31,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
 });
-
-// AppRegistry registerComponent('ProfilScreen',( => ProfileScreen))
