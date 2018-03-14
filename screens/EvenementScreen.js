@@ -6,7 +6,7 @@ import { WebBrowser } from 'expo';
 import {connect} from 'react-redux';
 import WelcomeScreen from './WelcomeScreen'
 import { MonoText } from '../components/StyledText';
-import { GiftedChat } from 'react-native-gifted-chat'
+
 
 export default class EvenementScreen extends React.Component {
   static navigationOptions = {
@@ -25,7 +25,7 @@ export default class EvenementScreen extends React.Component {
                <Text> Star Foula </Text>
                <Text note> Anniversaire prévue le : </Text>
                <Button
-                
+
                  title="Créer une conversation"
                  titleStyle={{ fontWeight: "700" }}
                  buttonStyle={{
