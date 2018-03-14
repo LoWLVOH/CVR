@@ -1,67 +1,82 @@
 import React from 'react';
 import {
-  Image,
+  ImageBackground,
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import { Text,Button } from 'react-native-elements';
+import {connect} from 'react-redux';
 
-import { MonoText } from '../components/StyledText';
-
-export default class HomeScreen extends React.Component {
+class WelcomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
+
   render() {
     return (
-      <View style={styles.container}>
-      </View>
+      <ImageBackground style={{flex: 1}} source={require('../assets/images/Welcome.jpg')}>
+        <View style={{flex:1,justifyContent: 'center',alignItems: 'center', marginBottom: 500 }}>
+          <Text h1 style={{color: "#D81159"}}>ChoisiVersaire</Text>
+          <Text h3 style={{color: "#D81159"}}>Choisi ton Anni!!!</Text>
+        </View>
+        <View style={{flex: 0, flexDirection: 'row', justifyContent: 'space-around', marginBottom: 45}}>
+        <Button
+    onPress={this.props.signUp}
+    title="SIGN UP"
+    titleStyle={{ fontWeight: "700" }}
+    buttonStyle={{
+    backgroundColor: "#D81159",
+    width: 120,
+    height: 45,
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
+
+    }} />
+      <Button
+    onPress={this.props.signIn}
+    title="SIGN IN"
+    titleStyle={{ fontWeight: "700" }}
+    buttonStyle={{
+    backgroundColor: "#D81159",
+    width: 120,
+    height: 45,
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
+    }} />
+    </View>
+      </ImageBackground>
     );
   }
+}
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
+function mapDispatchToProps(dispatch) {
+  return {
+    signUp: function() {
+        dispatch( {type: 'login'} )
+    },
+    signIn: function() {
+        dispatch( {type: 'login'} )
     }
   }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(WelcomeScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   developmentModeText: {
     marginBottom: 20,
