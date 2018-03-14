@@ -10,6 +10,7 @@ export default class ProfileScreen extends React.Component {
   };
 
   render() {
+
     return (
       <View>
 
@@ -18,5 +19,6 @@ export default class ProfileScreen extends React.Component {
 
       </View>
     );
+
   }
 }
