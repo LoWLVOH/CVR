@@ -19,12 +19,11 @@ class Bar extends React.Component {
 
          </View>
 
-         <View style={styles.barItem}>
+         <View style={[styles.barItem,styles.barseparator]}>
              <Text style={styles.barTop}>332</Text>
              <Text style={styles.barBottom}>Following</Text>
 
          </View>
-
 
        </View>
 

@@ -8,7 +8,7 @@ class SignUpForm extends React.Component {
 
   render(){
     return(
-      <View>
+      <View style={styles.container}>
         <Field
           name="firstName"
           component={textAccount}
@@ -69,9 +69,8 @@ export default reduxForm({
 
 const styles = StyleSheet.create({
   container: {
+    alignItems:'center',
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });
-
