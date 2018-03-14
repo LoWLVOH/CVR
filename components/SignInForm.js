@@ -44,8 +44,7 @@ export default reduxForm({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
+    flex: 0,
     justifyContent: 'center',
   },
 });
