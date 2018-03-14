@@ -3,13 +3,14 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
-import WelcomeScreen from './screens/WelcomeScreen';
 import {Provider} from 'react-redux';
 import {combineReducers, createStore}  from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import logReducer from './Reducers/logReducer';
+import isLogReducer from './Reducers/isLogReducer';
 
 
-var globalReducers = combineReducers({form: formReducer});
+var globalReducers = combineReducers({form: formReducer, logReducer, isLogReducer});
 const store = createStore(globalReducers);
 
 
@@ -21,12 +22,7 @@ export default class App extends React.Component {
 
 
   render() {
-    var display;
-    if (this.state.isLog == false ) {
-      display = <WelcomeScreen />;
-    } else {
-      display = <RootNavigation />;
-    }
+
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -40,9 +36,11 @@ export default class App extends React.Component {
 
         <Provider store={store}>
           <View style={styles.container}>
+
+            <RootNavigation />
+
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
             {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-            <RootNavigation />
           </View>
         </Provider>
 
@@ -76,6 +74,8 @@ export default class App extends React.Component {
     this.setState({ isLoadingComplete: true });
   };
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

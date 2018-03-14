@@ -1,10 +1,10 @@
 import { Notifications } from 'expo';
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-
+import {connect} from 'react-redux';
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
-
+import WelcomeScreen from '../screens/WelcomeScreen';
 const RootStackNavigator = StackNavigator(
   {
     Main: {
@@ -20,7 +20,7 @@ const RootStackNavigator = StackNavigator(
   }
 );
 
-export default class RootNavigator extends React.Component {
+class RootNavigator extends React.Component {
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
   }
@@ -30,7 +30,13 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    return <RootStackNavigator />;
+    var display;
+    if (this.props.isLog == false) {
+      display = <WelcomeScreen />;
+    } else {
+      display = <RootStackNavigator />;
+    }
+    return display;
   }
 
   _registerForPushNotifications() {
@@ -48,3 +54,12 @@ export default class RootNavigator extends React.Component {
     console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
   };
 }
+
+function mapStateToProps(state) {
+  return { isLog: state.isLogReducer }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(RootNavigator);
