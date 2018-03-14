@@ -7,9 +7,10 @@ import {Provider} from 'react-redux';
 import {combineReducers, createStore}  from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import logReducer from './Reducers/logReducer';
+import isLogReducer from './Reducers/isLogReducer';
 
 
-var globalReducers = combineReducers({form: formReducer, logReducer});
+var globalReducers = combineReducers({form: formReducer, logReducer, isLogReducer});
 const store = createStore(globalReducers);
 
 

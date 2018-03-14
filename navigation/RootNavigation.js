@@ -31,8 +31,7 @@ class RootNavigator extends React.Component {
 
   render() {
     var display;
-    console.log(this.props.login.logReducer);
-    if (this.props.login.logReducer == false) {
+    if (this.props.isLog == false) {
       display = <WelcomeScreen />;
     } else {
       display = <RootStackNavigator />;
@@ -57,7 +56,7 @@ class RootNavigator extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { login: state }
+  return { isLog: state.isLogReducer }
 }
 
 export default connect(
