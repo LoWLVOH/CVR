@@ -8,8 +8,9 @@ import {
   View,
 } from 'react-native';
 import { Text,Button } from 'react-native-elements';
+import {connect} from 'react-redux';
 
-export default class WelcomeScreen extends React.Component {
+class WelcomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -24,7 +25,7 @@ export default class WelcomeScreen extends React.Component {
         </View>
         <View style={{flex: 0, flexDirection: 'row', justifyContent: 'space-around', marginBottom: 45}}>
         <Button
-    onClick={this.signUp}
+    onPress={this.props.signUp}
     title="SIGN UP"
     titleStyle={{ fontWeight: "700" }}
     buttonStyle={{
@@ -37,7 +38,7 @@ export default class WelcomeScreen extends React.Component {
 
     }} />
       <Button
-    onClick={this.signIn}
+    onPress={this.props.signIn}
     title="SIGN IN"
     titleStyle={{ fontWeight: "700" }}
     buttonStyle={{
@@ -53,6 +54,22 @@ export default class WelcomeScreen extends React.Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    signUp: function() {
+        dispatch( {type: 'login'} )
+    },
+    signIn: function() {
+        dispatch( {type: 'login'} )
+    }
+  }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(WelcomeScreen);
 
 const styles = StyleSheet.create({
   container: {
