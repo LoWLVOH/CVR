@@ -3,13 +3,30 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import WelcomeScreen from './screens/WelcomeScreen';
+import {Provider} from 'react-redux';
+import {combineReducers, createStore}  from 'redux';
+import { reducer as formReducer } from 'redux-form';
+
+
+var globalReducers = combineReducers({form: formReducer});
+const store = createStore(globalReducers);
+
 
 export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
-  };
+  constructor(){
+  super()
+  this.state={isLog: false, isLoadingComplete: false}
+}
+
 
   render() {
+    var display;
+    if (this.state.isLog == false ) {
+      display = <WelcomeScreen />;
+    } else {
+      display = <RootNavigation />;
+    }
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -20,11 +37,16 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <RootNavigation />
-        </View>
+
+        <Provider store={store}>
+          <View style={styles.container}>
+            {display}
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+            <RootNavigation />
+          </View>
+        </Provider>
+
       );
     }
   }
