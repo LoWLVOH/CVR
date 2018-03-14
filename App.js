@@ -9,20 +9,42 @@ import { reducer as formReducer } from 'redux-form';
 import logReducer from './Reducers/logReducer';
 import isLogReducer from './Reducers/isLogReducer';
 
+// import { GiftedChat } from 'react-native-gifted-chat';
+// import messagesData from './data';
 
 var globalReducers = combineReducers({form: formReducer, logReducer, isLogReducer});
 const store = createStore(globalReducers);
+
+// const filterBotMessages = (message) => !message.system && message.user && message.user._id && message.user._id === 2;
 
 
 export default class App extends React.Component {
   constructor(){
   super()
-  this.state={isLog: false, isLoadingComplete: false}
+  this.state={
+   isLog: false,
+   isLoadingComplete: false
+   // messages: []
+ }
+   // this.onSend = this.onSend.bind(this);
 }
+
+// componentWillMount() {
+//     // init with only system messages
+//     this.setState({ messages: messagesData.filter((message) => message.system) });
+//   }
+//
+//   onSend(messages = []) {
+//     const step = this.state.step + 1;
+//     this.setState((previousState) => ({
+//       messages: GiftedChat.append(previousState.messages, [{ ...messages[0], sent: true, received: true }]),
+//       step,
+//     }));
+//     setTimeout(() => this.botSend(step), 1500 + Math.round(Math.random() * 1000));
+//   }
 
 
   render() {
-
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -41,6 +63,13 @@ export default class App extends React.Component {
 
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
             {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+            {/* <GiftedChat
+              messages={this.state.messages}
+              onSend={this.onSend}
+              user={{
+              _id: 1,
+            }}
+            /> */}
           </View>
         </Provider>
 
