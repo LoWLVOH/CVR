@@ -6,12 +6,12 @@ import { WebBrowser } from 'expo';
 import {connect} from 'react-redux';
 import WelcomeScreen from './WelcomeScreen'
 import { MonoText } from '../components/StyledText';
-// import { GiftedChat } from 'react-native-gifted-chat'
-//
-// export default class EvenementScreen extends React.Component {
-//   static navigationOptions = {
-//     header: null,
-//   };
+
+
+export default class EvenementScreen extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
 //
 //   state = {
 //       messages: [],
@@ -76,7 +76,7 @@ import { MonoText } from '../components/StyledText';
     </Container>
    )
   }
-
+}
 
 const styles = StyleSheet.create({
   container: {
