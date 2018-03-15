@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View, Avatar } from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import { List, ListItem } from 'react-native-elements';
+
 import { WebBrowser } from 'expo';
 import {connect} from 'react-redux';
 import WelcomeScreen from './WelcomeScreen'
@@ -24,7 +25,7 @@ export default class EvenementScreen extends React.Component {
                <Text> Star Foula </Text>
                <Text note> Anniversaire prévue le : </Text>
                <Button
-                 onPress={this.props.onHandleClick()}
+
                  title="Créer une conversation"
                  titleStyle={{ fontWeight: "700" }}
                  buttonStyle={{
@@ -33,6 +34,7 @@ export default class EvenementScreen extends React.Component {
                  borderWidth: 0,
                  borderRadius: 5,}}
                />
+
              </Body>
            </ListItem>
          </List>
