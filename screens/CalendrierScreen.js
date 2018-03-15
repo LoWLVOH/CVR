@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import { Calendar, Agenda, calendarTheme  } from 'react-native-calendars'; // 1.5.3
+import { Calendar, Agenda, calendarTheme  } from 'react-native-calendars'; 
 
 
 export default class CalendrierScreen extends React.Component {
