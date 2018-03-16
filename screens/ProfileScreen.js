@@ -1,6 +1,8 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
+
 import {StyleSheet, View } from 'react-native';
+
 
 import ProfileHeader from '../components/profil/component/profilHeader';
 import Bar from '../components/profil/component/bar';

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, Avatar } from 'react-native';
-import { Container, Header, Content, Left, Body, Right, Thumbnail } from 'native-base';
-import { List, ListItem,Button } from 'react-native-elements';
+import {Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View, Avatar } from 'react-native';
+import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import { List, ListItem } from 'react-native-elements';
+
 import { WebBrowser } from 'expo';
 import {connect} from 'react-redux';
 import WelcomeScreen from './WelcomeScreen'
 import { MonoText } from '../components/StyledText';
-
 
 export default class EvenementScreen extends React.Component {
   static navigationOptions = {
@@ -14,7 +14,7 @@ export default class EvenementScreen extends React.Component {
   };
 
   render () {
-  return (
+    return (
     <Container>
        <Header />
        <Content>
@@ -34,7 +34,6 @@ export default class EvenementScreen extends React.Component {
                  borderWidth: 0,
                  borderRadius: 5,}}
                />
-
 
              </Body>
            </ListItem>
