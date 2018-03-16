@@ -10,6 +10,7 @@ function textAccount(props) {
         onChangeText={input.onChange}
         value={input.value}
         placeholder={ fieldName }
+        enablesReturnKeyAutomatically={true}
       />
     </View>
   );
