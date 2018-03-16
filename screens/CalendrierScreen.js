@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import { Calendar, Agenda, calendarTheme  } from 'react-native-calendars'; // 1.5.3
+import { Calendar, Agenda, calendarTheme  } from 'react-native-calendars'; 
 
 
 export default class CalendrierScreen extends React.Component {
@@ -65,13 +65,11 @@ export default class CalendrierScreen extends React.Component {
   render() {
     return (
       <ScrollView>
-      <Calendar style={styles.container}>
-      </Calendar>
 
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected={'2017-05-16'}
+        selected={'2018-03-30'}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
