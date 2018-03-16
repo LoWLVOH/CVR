@@ -12,6 +12,7 @@ import ButtonLog from '../components/ButtonLog';
 import SignUpForm from '../components/SignUpForm';
 import SignInForm from '../components/SignInForm';
 import {connect} from 'react-redux';
+import { Permissions, Contacts } from 'expo';
 
 class WelcomeScreen extends React.Component {
   constructor(){
@@ -22,6 +23,28 @@ class WelcomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  componentDidMount() {
+    this.showFirstContactAsync();
+  }
+
+  async showFirstContactAsync() {
+    // // Ask for permission to query contacts.
+    const permission = await Expo.Permissions.askAsync(Expo.Permissions.CONTACTS);
+    if (permission.status !== 'granted') {
+      // Permission was denied...
+      return;
+    }
+    const contacts = await Expo.Contacts.getContactsAsync({
+      fields: [
+        Expo.Contacts.PHONE_NUMBERS,
+      ],
+      pageSize: 1000,
+      pageOffset: 0,
+    })
+      console.log(contacts.total);
+      console.log(contacts);
+  }
 
     signUp(values){
       this.props.isLog();
