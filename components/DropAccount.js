@@ -10,7 +10,7 @@ function dropAccount(props) {
       <Dropdown
       label={ labelName }
       data={ data }
-      containerStyle={{width: 150}}
+      containerStyle={{width: 120}}
       // baseColor="#000"
       // textColor="#000"
       labelFontSize={18}
