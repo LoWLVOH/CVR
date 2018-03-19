@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import WelcomeScreen from './WelcomeScreen'
 import { MonoText } from '../components/StyledText';
 
+
 const list = [
   {
     name: 'Amy Farha',
@@ -28,6 +29,7 @@ export default class EvenementScreen extends React.Component {
   };
 
   render() {
+
     return(
       <List containerStyle={{marginBottom: 20}}>
         {
@@ -42,7 +44,6 @@ export default class EvenementScreen extends React.Component {
         }
       </List>
     );
-
   }
 }
 
