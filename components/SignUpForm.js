@@ -28,7 +28,7 @@ for (var i = 1950; i < 2020; i++) {
 
     return(
       <View style={styles.container}>
-        {/* <View style={{flex:0, backgroundColor:'pink', padding: 60}}> */}
+        <View style={{flex:0, backgroundColor:'pink', padding: 60, justifyContent: 'center', alignItems:'center'}}>
         <Field
           name="userName"
           component={textAccount}
@@ -52,18 +52,18 @@ for (var i = 1950; i < 2020; i++) {
           labelName = "Day"
           data={day}
         />
-      <Field
-        name="month"
-        component={dropAccount}
-        labelName = "Month"
-        data={month}
-      />
-      <Field
-        name="year"
-        component={dropAccount}
-        labelName = "Year"
-        data={year}
-      />
+        <Field
+          name="month"
+          component={dropAccount}
+          labelName = "Month"
+          data={month}
+        />
+        <Field
+          name="year"
+          component={dropAccount}
+          labelName = "Year"
+          data={year}
+        />
         </View>
         <Button
           onPress={this.props.handleSubmit}
@@ -79,7 +79,7 @@ for (var i = 1950; i < 2020; i++) {
           }}
           containerStyle={{ marginTop: 60 }}
         />
-        {/* </View> */}
+        </View>
       </View>
     )
   }
