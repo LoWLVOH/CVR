@@ -1,18 +1,39 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import { Calendar, Agenda, calendarTheme  } from 'react-native-calendars'; 
+import React, { Component } from 'react';
+import {Text,  View,StyleSheet} from 'react-native';
+import {Agenda} from 'react-native-calendars';
 
-
-export default class CalendrierScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Calendrier',
-  };
-
+export default class CalendrierScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: {}
     };
+  }
+
+  render() {
+    return (
+      <Agenda
+        items={this.state.items}
+        loadItemsForMonth={this.loadItems.bind(this)}
+        selected={'2018-01-01'}
+        renderItem={this.renderItem.bind(this)}
+        renderEmptyDate={this.renderEmptyDate.bind(this)}
+        rowHasChanged={this.rowHasChanged.bind(this)}
+        // markingType={'period'}
+        // markedDates={{
+        //    '2017-05-08': {textColor: '#666'},
+        //    '2017-05-09': {textColor: '#666'},
+        //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
+        //    '2017-05-21': {startingDay: true, color: 'blue'},
+        //    '2017-05-22': {endingDay: true, color: 'gray'},
+        //    '2017-05-24': {startingDay: true, color: 'gray'},
+        //    '2017-05-25': {color: 'gray'},
+        //    '2017-05-26': {endingDay: true, color: 'gray'}}}
+         // monthFormat={'yyyy'}
+         // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
+        //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+      />
+    );
   }
 
   loadItems(day) {
@@ -61,48 +82,9 @@ export default class CalendrierScreen extends React.Component {
     const date = new Date(time);
     return date.toISOString().split('T')[0];
   }
-
-  render() {
-    return (
-      <ScrollView>
-
-      <Agenda
-        items={this.state.items}
-        loadItemsForMonth={this.loadItems.bind(this)}
-        selected={'2018-03-30'}
-        renderItem={this.renderItem.bind(this)}
-        renderEmptyDate={this.renderEmptyDate.bind(this)}
-        rowHasChanged={this.rowHasChanged.bind(this)}
-        // markingType={'period'}
-        // markedDates={{
-        //    '2017-05-08': {textColor: '#666'},
-        //    '2017-05-09': {textColor: '#666'},
-        //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
-        //    '2017-05-21': {startingDay: true, color: 'blue'},
-        //    '2017-05-22': {endingDay: true, color: 'gray'},
-        //    '2017-05-24': {startingDay: true, color: 'gray'},
-        //    '2017-05-25': {color: 'gray'},
-        //    '2017-05-26': {endingDay: true, color: 'gray'}}}
-         // monthFormat={'yyyy'}
-         // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-        //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-      />
-
-      </ScrollView>
-    );
-  }
 }
 
-
-
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderRadius: 5,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
   item: {
     backgroundColor: 'white',
     flex: 1,
