@@ -10,10 +10,11 @@ class SignInForm extends React.Component {
   render(){
     return(
       <View style={styles.container}>
+        <View style={{backgroundColor:'pink', padding: 60}}>
         <Field
-          name="email"
+          name="userName"
           component={textAccount}
-          fieldName = "Mail"
+          fieldName = "User Name"
         />
         <Field
           name="password"
@@ -22,17 +23,19 @@ class SignInForm extends React.Component {
         />
         <Button
           onPress={this.props.handleSubmit}
+          title="SIGN IN"
+          titleStyle={{ fontWeight: "700" }}
           buttonStyle={{
-            backgroundColor: "rgba(9, 2,5, 1)",
-            width: 300,
-            height: 45,
-            borderColor: "transparent",
-            borderWidth: 0,
-            borderRadius: 100
+          backgroundColor: "#D81159",
+          width: 120,
+          height: 45,
+          borderColor: "transparent",
+          borderWidth: 0,
+          borderRadius: 5
           }}
-          title="Ferme ta gueule"
-          containerStyle={{ marginTop: 20 }}
+          containerStyle={{ marginTop: 60 }}
         />
+        </View>
       </View>
     )
   }
