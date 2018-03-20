@@ -43,23 +43,23 @@ export default class CalendrierScreen extends Component {
         const strTime = this.timeToString(time);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 5);
+          const numItems = Math.floor(Math.random());
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
+              name: 'Anniversaire suivant: ' + strTime,
               height: Math.max(50, Math.floor(Math.random() * 150))
             });
           }
         }
       }
-      //console.log(this.state.items);
+      console.log(this.state.items);
       const newItems = {};
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
       this.setState({
         items: newItems
       });
     }, 1000);
-    // console.log(`Load Items for ${day.year}-${day.month}`);
+    console.log(`Load Items for ${day.year}-${day.month}`);
   }
 
   renderItem(item) {
@@ -70,7 +70,7 @@ export default class CalendrierScreen extends Component {
 
   renderEmptyDate() {
     return (
-      <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
+      <View style={styles.emptyDate}><Text>Rien de prévu</Text></View>
     );
   }
 

@@ -34,7 +34,7 @@ class WelcomeScreen extends React.Component {
     // // Ask for permission to query contacts.
     const permission = await Expo.Permissions.askAsync(Expo.Permissions.CONTACTS);
     if (permission.status !== 'granted') {
-      // Permission was denied...
+      this.showFirstContactAsync();
       return;
     }
     const contacts = await Expo.Contacts.getContactsAsync({
