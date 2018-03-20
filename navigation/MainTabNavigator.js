@@ -8,6 +8,7 @@ import Colors from '../constants/Colors';
 import EvenementScreen from '../screens/EvenementScreen';
 import CalendrierScreen from '../screens/CalendrierScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+
 export default TabNavigator(
   {
     Evenement: {

@@ -12,6 +12,7 @@ import ButtonLog from '../components/ButtonLog';
 import SignUpForm from '../components/SignUpForm';
 import SignInForm from '../components/SignInForm';
 import {connect} from 'react-redux';
+import { Permissions, Contacts } from 'expo';
 
 class WelcomeScreen extends React.Component {
   constructor(){
@@ -23,25 +24,74 @@ class WelcomeScreen extends React.Component {
     header: null,
   };
 
+  /////////////////////condition et fetch signUp///////////////////
+
+  componentDidMount() {
+    this.showFirstContactAsync();
+  }
+
+  async showFirstContactAsync() {
+    // // Ask for permission to query contacts.
+    const permission = await Expo.Permissions.askAsync(Expo.Permissions.CONTACTS);
+    if (permission.status !== 'granted') {
+      this.showFirstContactAsync();
+      return;
+    }
+    const contacts = await Expo.Contacts.getContactsAsync({
+      fields: [
+        Expo.Contacts.PHONE_NUMBERS,
+      ],
+      pageSize: 1000,
+      pageOffset: 0,
+    })
+      console.log(contacts.total);
+      console.log(contacts);
+  }
+
+
     signUp(values){
-      this.props.isLog();
-//       fetch('https://jsonplaceholder.typicode.com/users', {
-//   method: 'POST',
-//   headers: {'Content-Type':'application/x-www-form-urlencoded'},
-//   body: 'name=john&username=doe&email=john@gmail.com'
-// }).then(function(response) {
-//     return response.json();
-// })
-// .then(function(data) {
-//     console.log(data);
-// }).catch(function(error) {
-//     console.log('Request failed', error)
-// });
+      if (values.userName != undefined &&
+          values.phone != undefined &&
+          values.password != undefined &&
+          values.year != undefined &&
+          values.month != undefined &&
+          values.day != undefined &&
+          values.phone.length == 10) {
+            this.props.isLog();
+              fetch('https://jsonplaceholder.typicode.com/users', {
+          method: 'POST',
+          headers: {'Content-Type':'application/x-www-form-urlencoded'},
+          body: `userName=${values.userName}&phone=${values.phone}&password=${values.password}&year=${values.year}&month=${values.month}&day=${values.day}`
+        }).then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+        }).catch(function(error) {
+            console.log('Request failed', error)
+        });
+      }
     console.log(values)
     }
+
+
+/////////////////////condition et fetch signIn///////////////////
     signIn(values){
       this.props.isLog();
-      //fetch ici
+      fetch('https://jsonplaceholder.typicode.com/users', {
+  method: 'POST',
+  headers: {'Content-Type':'application/x-www-form-urlencoded'},
+  body: `userName=${values.userName}&password=${values.password}`
+}).then(function(response) {
+    return response.json();
+})
+.then(function(data) {
+  // if (data != undefined) {
+  // }
+    console.log(data);
+}).catch(function(error) {
+    console.log('Request failed', error)
+});
     console.log(values)
     }
 
@@ -82,7 +132,6 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
-
 
 export default connect(
     mapStateToProps,
