@@ -34,11 +34,11 @@ export default class EvenementScreen extends React.Component {
     return(
       <List containerStyle={{marginBottom: 20}}>
         {
-          list.map((l) => (
+          list.map((l, i) => (
             <ListItem
               roundAvatar
               avatar={{uri:l.avatar_url}}
-              key={0}
+              key={i}
               title={l.name}
             />
           ))
