@@ -72,6 +72,7 @@ if (this.state.camera) {
                    <Field name="phone number" component={textInput}/>
                    <Field name="date de naissance" component={textInput}/>
                    <Field name="ton choisieversaire" component={textInput} />
+                   
                 {/* <Input placeholder='userName' component={textInput}/>
                 <Input placeholder='Password' component={textInput}/>
                 <Input placeholder='phone number' component={textInput}/>
