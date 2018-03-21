@@ -3,6 +3,9 @@ import {Text,  View,StyleSheet} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 
 export default class CalendrierScreen extends Component {
+  static navigationOptions = {
+    title: 'Calendrier',
+  };
   constructor(props) {
     super(props);
     this.state = {

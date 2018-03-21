@@ -24,9 +24,7 @@ export default class App extends React.Component {
   this.state={
    isLog: false,
    isLoadingComplete: false
-   // messages: []
  }
-   // this.onSend = this.onSend.bind(this);
 }
 
 // componentWillMount() {
