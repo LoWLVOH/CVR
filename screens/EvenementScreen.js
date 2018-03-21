@@ -74,6 +74,7 @@ export default class EvenementScreen extends React.Component {
       <View>
       <List containerStyle={styles.container}>
         {display}
+
       </List>
     </View>
     )

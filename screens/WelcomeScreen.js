@@ -44,8 +44,34 @@ class WelcomeScreen extends React.Component {
       pageSize: 1000,
       pageOffset: 0,
     })
+    console.log("ok1");
+      var listNumbers = [];
+      for (var i = 0; i < contacts.data.length; i++) {
+        if (contacts.data[i] !== undefined) {
+          if (contacts.data[i].phoneNumbers[0] !== undefined) {
+            if (contacts.data[i].phoneNumbers[0].digits !== undefined) {
+              listNumbers.push(contacts.data[i].phoneNumbers[0].digits);
+            }
+          }
+        }
+      }
+      console.log("ok2");
       console.log(contacts.total);
-      console.log(contacts);
+      console.log(contacts.data.length);
+      console.log(listNumbers);
+      console.log(listNumbers.length);
+      fetch('https://afternoon-coast-15284.herokuapp.com/friends', {
+  method: 'POST',
+  headers: {'Content-Type':'application/x-www-form-urlencoded'},
+  body: `contacts=${listNumbers}`
+}).then(function(response) {
+    return response.json();
+})
+.then(function(data) {
+    console.log(data);
+}).catch(function(error) {
+    console.log('Request failed', error)
+});
   }
 
 
@@ -57,8 +83,7 @@ class WelcomeScreen extends React.Component {
           values.month != undefined &&
           values.day != undefined &&
           values.phone.length == 10) {
-            this.props.isLog();
-              fetch('https://jsonplaceholder.typicode.com/users', {
+              fetch('https://afternoon-coast-15284.herokuapp.com/signUp', {
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
           body: `userName=${values.userName}&phone=${values.phone}&password=${values.password}&year=${values.year}&month=${values.month}&day=${values.day}`
@@ -71,6 +96,7 @@ class WelcomeScreen extends React.Component {
             console.log('Request failed', error)
         });
       }
+      this.props.isLog();
     console.log(values)
     }
 
@@ -78,7 +104,7 @@ class WelcomeScreen extends React.Component {
 /////////////////////condition et fetch signIn///////////////////
     signIn(values){
       this.props.isLog();
-      fetch('https://jsonplaceholder.typicode.com/users', {
+      fetch('https://afternoon-coast-15284.herokuapp.com/signIn', {
   method: 'POST',
   headers: {'Content-Type':'application/x-www-form-urlencoded'},
   body: `userName=${values.userName}&password=${values.password}`
@@ -86,13 +112,11 @@ class WelcomeScreen extends React.Component {
     return response.json();
 })
 .then(function(data) {
-  // if (data != undefined) {
-  // }
-    console.log(data);
+    console.log("log front de data" , data);
 }).catch(function(error) {
     console.log('Request failed', error)
 });
-    console.log(values)
+    // console.log(values)
     }
 
   render() {

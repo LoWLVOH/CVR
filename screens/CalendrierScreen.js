@@ -62,7 +62,7 @@ export default class CalendrierScreen extends Component {
         items: newItems
       });
     }, 1000);
-    console.log(`Load Items for ${day.year}-${day.month}`);
+    // console.log(`Load Items for ${day.year}-${day.month}`);
   }
 
   renderItem(item) {
