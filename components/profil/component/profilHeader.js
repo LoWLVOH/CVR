@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
+import { reduxForm, Field } from "redux-form";
 import { Constants, Camera, FileSystem, Permissions } from 'expo';
 import {Button,Avatar,Divider,Input,visible} from 'react-native-elements';
 
@@ -12,9 +13,23 @@ import { AppRegistry,
          ImageBackground,
          TouchableOpacity,
          Modal,
+         TextInput,
         } from 'react-native';
         import Cam from './cam';
+        import CameraScreen from './cameraScreen';
 
+        function textInput(props) {
+          const { input } = props;
+          return (
+            <View>
+              <Input
+                onChangeText={input.onChange}
+                placeholder={'userName'}
+                value={input.value}
+              />
+            </View>
+          );
+        }
 class ProfileHeader extends React.Component {
 constructor()
        {
@@ -25,14 +40,16 @@ constructor()
        afterSnap(id){
          var picId = id - 1;
          this.setState({
-        cameraOn: false, photoId: picId
+        camera: false, photoId: picId
       });
       }
   render() {
     var display;
     console.log(this.state.camera);
 if (this.state.camera) {
-  display=<Cam onPict={this.afterSnap.bind(this)} />
+  display=<Modal visible={this.state.camera}>
+             <Cam onPict={this.afterSnap.bind(this)} />
+            </Modal>
 } else {
   display=<Modal visible={this.state.edit}>
 
@@ -40,17 +57,26 @@ if (this.state.camera) {
                 <Text> Modifie ton profil</Text>
 
                 <View style={styles.profilepicWrap}>
-                       <Image style={styles.profilepic} source ={require('../img/profilPic.jpg')} />
+                       <Image style={styles.profilepic}
+                         source= {{uri: `${FileSystem.documentDirectory}photos/Photo_1.jpg`}}
+                         // source ={require('../img/profilPic.jpg')}
+
+                       />
                 </View>
                 <TouchableOpacity onPress={()=>{ this.setState({camera:true})}} style={styles.ButtonEdit}>
 
                 <Text> Modifie ta photo</Text>
                    </TouchableOpacity>
-                <Input placeholder='userName'/>
-                <Input placeholder='Password'/>
-                <Input placeholder='phone number'/>
-                <Input placeholder='date de naissance'/>
-                <Input placeholder='ton choisieversaire'/>
+                   <Field name="userName" component={textInput}/>
+                   <Field name="Password" component={textInput}/>
+                   <Field name="phone number" component={textInput}/>
+                   <Field name="date de naissance" component={textInput}/>
+                   <Field name="ton choisieversaire" component={textInput} />
+                {/* <Input placeholder='userName' component={textInput}/>
+                <Input placeholder='Password' component={textInput}/>
+                <Input placeholder='phone number' component={textInput}/>
+                <Input placeholder='date de naissance' component={textInput}/>
+                <Input placeholder='ton choisieversaire' component={textInput}/> */}
 
                 <Button onPress={()=>{this.setState({edit:false})}}
                   text="update"
@@ -80,7 +106,11 @@ if (this.state.camera) {
             <View style={styles.header}>
 
                <View style={styles.profilepicWrap}>
-                      <Image style={styles.profilepic} source ={require('../img/profilPic.jpg')} />
+                      <Image style={styles.profilepic}
+                        source= {{uri: `${FileSystem.documentDirectory}photos/Photo_1.jpg`}}
+
+                         // source ={require('../img/profilPic.jpg')}
+                       />
                </View>
                <TouchableOpacity onPress={()=>{ this.setState({edit:true})}} style={styles.ButtonEdit}>
                   <Text style={styles.ButtonText}>Modifier le profil</Text>
@@ -92,14 +122,15 @@ if (this.state.camera) {
             </View>
 
             {display}
-
         </ImageBackground>
 
     );
   }
 }
 
-export default ProfileHeader;
+export default reduxForm({
+  form: 'update'
+})(ProfileHeader)
 
 const styles = StyleSheet.create({
   headerBackground:{
@@ -113,7 +144,7 @@ const styles = StyleSheet.create({
              justifyContent:'center',
              padding:20,
              backgroundColor: 'rgba(0,0,0, 0.5)'
-     },
+       },
  profilepicWrap:{
              width:180,
              height:180,
