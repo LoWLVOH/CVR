@@ -23,7 +23,8 @@
     "react-navigation": "^1.0.0-beta.27",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "redux-form": "^7.3.0"
+    "redux-form": "^7.3.0",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "jest-expo": "^25.0.0"

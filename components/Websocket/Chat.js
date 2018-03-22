@@ -1,54 +1,81 @@
-import { GiftedChat } from 'react-native-gifted-chat'
 import React from 'react';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { Input, ListItem, List , Button  } from 'react-native-elements';
+import io from 'socket.io-client';
 
-class Chat extends React.Component {
-  state = {
-    messages: [],
-  }
+export default class App extends React.Component {
 
-  componentWillMount() {
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text: 'Hello developer',
-          createdAt: new Date(Date.UTC(2018, 5, 11, 17, 20, 0)),
-        },
-        {
-          _id: 2,
-          text: 'Ta gueule',
-          createdAt: new Date(),
-        },
-        {
-          _id: 3,
-          text: 'Merci',
-          createdAt: new Date(),
-         },
-         {
-           _id: 4,
-           text: 'Sajir',
-           createdAt: new Date(),
-          }
-      ]
-    })
-  }
+ constructor(props) {
+     super(props);
+     this.socket = io('https://afternoon-coast-15284.herokuapp.com/friends/', { transports: ['websocket'] });
+     // this.socket = io('http://10.2.1.58:3000', { transports: ['websocket'] });
+     this.state = {text : null, message: []}
+     this.socket.on('chat message', this.showMessage.bind(this))
+   }
 
-  onSend(messages = []) {
-    this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }))
-  }
-
-  render() {
-    return (
-        <View style={styles.container}>
-        <GiftedChat
-          messages={this.state.messages}
-          user={{
-            _id: 1,
-          }}
-        />
-      </View>
-    )
-  }
+showMessage = (msg) => {
+  // FAUUUUUUUXXXXXXXXXXX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // this.state.message.push(msg) >>> A NE PAS FAIRE
+  var messageList = [...this.state.message];
+  messageList.push(msg);
+  this.setState({message: messageList})
 }
+
+ sendMessage = () => {
+   var messageList = [...this.state.message];
+     console.log('ok');
+     this.socket.emit('chat message', this.state.text);
+     messageList.push(this.state.text)
+     this.setState({message: messageList})
+     this.setState({text: null})
+     console.log('message')
+ }
+
+ render() {
+   return (
+     <ScrollView>
+       <View>
+       {/* <View>{this.state.message.map(item => <Text>{item}</Text>)}</View> */}
+         <List>
+           {this.state.message.map((l, i) => (
+               <ListItem
+                 hideChevron
+                 key={i}
+                 title={l}
+                />
+              )
+            )}
+         </List>
+         <View style={styles.container}>
+           <Input
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}>
+           </Input>
+         </View>
+          <Button
+            title='Send'
+            onPress={()=>this.sendMessage()}
+            titleStyle={{ fontWeight: "700" }}
+            buttonStyle={{
+              backgroundColor: "rgba(92, 99,216, 1)",
+              width: 100,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+              borderRadius: 5
+            }}
+          />
+        </View>
+     </ScrollView>
+   );
+ }
+}
+
+const styles = StyleSheet.create({
+ container: {
+   flex: 1,
+   backgroundColor: '#fff',
+   alignItems: 'center',
+   justifyContent: 'center',
+ },
+});

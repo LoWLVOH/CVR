@@ -1,6 +1,6 @@
 import React from 'react';
-import {Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View, Avatar, Text } from 'react-native';
-import { List, ListItem, ListView, Header } from 'react-native-elements';
+import {Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View, Avatar, Text, Modal } from 'react-native';
+import { List, ListItem, ListView, Header, Button, TextInput } from 'react-native-elements';
 import { WebBrowser } from 'expo';
 import {connect} from 'react-redux';
 import WelcomeScreen from './WelcomeScreen';
@@ -10,18 +10,39 @@ import Chat from '../components/Websocket/Chat';
 
 export default class EvenementScreen extends React.Component {
   static navigationOptions = {
-    title: 'Evenement',
+    title: 'Evènements',
   };
   constructor() {
    super();
+   // this.onHandleClick = this.onHandleClick.bind(this);
    this.state = {
-     users: [],
+     users: [
+       {
+       userName: "Thomas",
+       day: 13,
+       month: "Novembre",
+       year: 1987,
+       uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"
+     },
+     {
+     userName: "Sajir",
+     day: 12,
+     month: "Novembre",
+     year: 1988,
+     uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"
+     }
+     ],
      onChat: false
    };
   };
-  // this.onHandleClick(){
-  //   this.setState({onChat: true})
-  // }
+
+   openChat(){
+    this.setState({onChat: true});
+   }
+
+   closeChat(){
+    this.setState({onChat: false});
+   }
 
   componentDidMount(){
         var ctx = this;
@@ -38,56 +59,59 @@ export default class EvenementScreen extends React.Component {
      }
 
   render() {
- var display;
- if (this.state.onChat) {
-   display =
-   <Modal visible={this.state.onChat}>
-     <Chat />
-   </Modal>
-  } else {
-   var list = this.state.users.map((l, i) => (
-     display =
-     <Modal>
-       <ListItem
-         onPress={() => this.props.onHandleClick(l)}
-         hideChevron
-         key={i}
-         avatar={<Avatar
-            source={{uri: this.avatar_url}}
-            avatarStyle={{borderColor: "red", borderWidth: 3}}
-            medium
-            rounded
-            />}
-         title={l.name}
-         subtitle={
-          <View>
-            <Text> Anniversaire prévu pour le :  </Text>
-          </View>
-          }
-        />
-      </Modal>
-      )
-     )
-    }
+
+   var display =
+     <Modal visible={this.state.onChat}>
+       <Chat />
+       <Button
+         onPress={() => this.closeChat()}
+          title="BACK"
+          titleStyle={{ fontWeight: "700" }}
+          buttonStyle={{
+            backgroundColor: "rgba(92, 99,216, 1)",
+            width: 100,
+            height: 45,
+            borderColor: "transparent",
+            borderWidth: 0,
+            borderRadius: 5
+          }}
+      />
+     </Modal>
+
 
   return(
       <View>
-      <List containerStyle={styles.container}>
         {display}
-
-      </List>
+        <List>
+          {this.state.users.map((l, i) => (
+              <ListItem
+                onPress={() => this.openChat()}
+                hideChevron
+                key={i}
+                roundAvatar
+                avatar={{uri:l.uri}}
+                title={l.userName}
+                subtitle={
+                 <View>
+                   <Text> Choisiversaire prévu pour le :  </Text>
+                 </View>
+                 }
+               />
+             )
+           )}
+        </List>
     </View>
     )
    }
   }
 
-  function mapDispatchToProps(dispatch) {
-  return {
-    onHandleClick: function(name) {
-        dispatch( {type: 'selectUser', name:name } )
-    }
-  }
-}
+//   function mapDispatchToProps(dispatch) {
+//   return {
+//     onHandleClick: function(name) {
+//         dispatch( {type: 'selectUser', name:name } )
+//     }
+//   }
+// }
 
 const styles = StyleSheet.create( {
   container: {

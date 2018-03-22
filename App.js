@@ -8,11 +8,12 @@ import {combineReducers, createStore}  from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import logReducer from './Reducers/logReducer';
 import isLogReducer from './Reducers/isLogReducer';
+import userReducer from './Reducers/userReducer';
 
 // import { GiftedChat } from 'react-native-gifted-chat';
 // import messagesData from './data';
 
-var globalReducers = combineReducers({form: formReducer, logReducer, isLogReducer});
+var globalReducers = combineReducers({form: formReducer, logReducer, isLogReducer, userReducer});
 const store = createStore(globalReducers);
 
 // const filterBotMessages = (message) => !message.system && message.user && message.user._id && message.user._id === 2;

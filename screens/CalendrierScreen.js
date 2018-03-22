@@ -9,9 +9,12 @@ export default class CalendrierScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      party: [{name:"Sajir"},{name:"Tom"},{name:"Tristan la pute"},{name:"Madhvi la chaude"},{name:"Sajir encore"}],
-      items: {}
+
+      items:{}
+
     };
+    this.eventData = {'1519257600000' : {name: "Hugo"}, '1518912000000' : {name: "Vanessa"}}
+
   }
 
   render() {
@@ -23,60 +26,70 @@ export default class CalendrierScreen extends Component {
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
-        // markingType={'period'}
-        // markedDates={{
-        //    '2017-05-08': {textColor: '#666'},
-        //    '2017-05-09': {textColor: '#666'},
-        //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
-        //    '2017-05-21': {startingDay: true, color: 'blue'},
-        //    '2017-05-22': {endingDay: true, color: 'gray'},
-        //    '2017-05-24': {startingDay: true, color: 'gray'},
-        //    '2017-05-25': {color: 'gray'},
-        //    '2017-05-26': {endingDay: true, color: 'gray'}}}
-         // monthFormat={'yyyy'}
-         // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
+         //markingType={'period'}
+        //markedDates={{
+            //'2017-05-08': {textColor: '#666'},
+            //'2017-05-09': {textColor: '#666'},
+            //'2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
+            //'2017-05-21': {startingDay: true, color: 'blue'},
+            //'2017-05-22': {endingDay: true, color: 'gray'},
+            //'2017-05-24': {startingDay: true, color: 'gray'},
+            //'2018-05-25': {color: 'gray'},
+            //'2017-05-26': {endingDay: true, color: 'gray'}}}
+         //monthFormat={'yyyy'}
+         theme={{calendarBackground: '#ed3d95', agendaKnobColor: 'white'}}
         //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
       />
     );
   }
 
+
   loadItems(day) {
+
     setTimeout(() => {
       for (let i = 0; i < 1; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
+        //console.log(this.eventData);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
-          //construit un nb d'item random
-          // const numItems = Math.floor(Math.random() * 2);
-          for (let j = 0; j < this.state.party.length; j++) {
+
+          if (this.eventData[time]) {
+
             this.state.items[strTime].push({
-              name: this.state.party[j].name + strTime,
-              //créé la taille random des items
-              height: Math.max(50, Math.floor(150))
+              name: 'Anniversaire suivant: ' + this.eventData[time].name,
+              height: Math.max(50, Math.floor(Math.random() * 150))
+
             });
+
+
           }
         }
+
       }
-      console.log(this.state.items);
-      // const newItems = {};
-      // Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
-      // this.setState({
-      //   items: newItems
-      // });
-    }, 0);
-    // console.log(`Load Items for ${day.year}-${day.month}`);
+
+      //console.log(this.state.items);
+      const newItems = {};
+      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+      this.setState({
+        items: newItems
+      });
+    }, 1000);
+
+
   }
 
   renderItem(item) {
     return (
       <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
+
     );
   }
 
   renderEmptyDate() {
     return (
-      <View style={styles.emptyDate}><Text>Rien de prévu</Text></View>
+      <View style={styles.emptyDate}><Text></Text></View>
+
     );
   }
 
