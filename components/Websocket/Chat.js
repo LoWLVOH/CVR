@@ -7,8 +7,8 @@ export default class App extends React.Component {
 
  constructor(props) {
      super(props);
-     this.socket = io('https://afternoon-coast-15284.herokuapp.com/friends/', { transports: ['websocket'] });
-     // this.socket = io('http://10.2.1.58:3000', { transports: ['websocket'] });
+     this.socket = io('https://afternoon-coast-15284.herokuapp.com', { transports: ['websocket'] });
+     // this.socket = io('http://10.2.1.56:3000', { transports: ['websocket'] });
      this.state = {text : null, message: []}
      this.socket.on('chat message', this.showMessage.bind(this))
    }
