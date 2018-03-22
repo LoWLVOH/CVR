@@ -21,6 +21,7 @@ export default TabNavigator(
       screen: ProfileScreen,
     },
 
+
   },
   {
     navigationOptions: ({ navigation }) => ({
