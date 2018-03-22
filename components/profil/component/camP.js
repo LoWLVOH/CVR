@@ -1,6 +1,6 @@
 import { Constants, Camera, FileSystem, Permissions } from 'expo';
 import React from 'react';
-import { Button,StyleSheet, Text, View, TouchableOpacity, Slider, Vibration } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Slider, Vibration } from 'react-native';
 import CameraScreen from '../component/cameraScreen';
 import isIPhoneX from 'react-native-is-iphonex';
 
@@ -22,10 +22,8 @@ const wbOrder = {
   incandescent: 'auto',
 };
 
-export default class Cam extends React.Component {
-
+export default class CamP extends React.Component {
   state = {
-    camera:true,
     flash: 'off',
     zoom: 0,
     autoFocus: 'on',
@@ -116,7 +114,7 @@ export default class Cam extends React.Component {
       this.camera.takePictureAsync().then(data => {
         FileSystem.moveAsync({
           from: data.uri,
-          to: `${FileSystem.documentDirectory}photos/Photo_1.jpg`,
+          to: `${FileSystem.documentDirectory}photos/Photo_2.jpg`,
         }).then(() => {
           this.setState({
             photoId: this.state.photoId + 1,
@@ -262,8 +260,8 @@ export default class Cam extends React.Component {
           <TouchableOpacity style={styles.flipButton} onPress={this.toggleFlash.bind(this)}>
             <Text style={styles.flipText}> FLASH: {this.state.flash} </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.flipButton} onPress={()=>{ this.setState({camera:false})}}>
-            <Text style={styles.flipText}> Back </Text>
+          <TouchableOpacity style={styles.flipButton} onPress={this.toggleWB.bind(this)}>
+            <Text style={styles.flipText}> WB: {this.state.whiteBalance} </Text>
           </TouchableOpacity>
         </View>
         <View
@@ -291,12 +289,7 @@ export default class Cam extends React.Component {
             alignSelf: 'flex-end',
           }}>
 
-          {/* <Button
-            style={[styles.flipButton, styles.picButton, { flex: 1, alignSelf: 'flex-center' }]}
-            onPress={this.takePicture.bind(this)}
-            title="take a Picture"
-            color="#841584"
-          /> */}
+
           <TouchableOpacity
             style={[styles.flipButton, styles.picButton, { flex: 0.3, alignSelf: 'flex-end' }]}
             onPress={this.takePicture.bind(this)}>
@@ -349,8 +342,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 15,
 
-
-
   },
   item: {
     margin: 4,
@@ -362,13 +353,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   picButton: {
-    // backgroundColor: 'darkseagreen',
-    backgroundColor: "#3498db",
-    width: 200,
-    height: 45,
-    borderColor: "transparent",
-    borderWidth: 0,
-    borderRadius: 5
+    backgroundColor: 'darkseagreen',
   },
   galleryButton: {
     backgroundColor: 'indianred',

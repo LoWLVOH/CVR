@@ -9,7 +9,9 @@ export default class CalendrierScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
       items:{}
+
     };
     this.eventData = {'1519257600000' : {name: "Hugo"}, '1518912000000' : {name: "Vanessa"}}
 
@@ -45,17 +47,19 @@ export default class CalendrierScreen extends Component {
   loadItems(day) {
 
     setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
+      for (let i = 0; i < 1; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
         //console.log(this.eventData);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
+
           if (this.eventData[time]) {
 
             this.state.items[strTime].push({
               name: 'Anniversaire suivant: ' + this.eventData[time].name,
               height: Math.max(50, Math.floor(Math.random() * 150))
+
             });
 
 
@@ -63,6 +67,7 @@ export default class CalendrierScreen extends Component {
         }
 
       }
+
       //console.log(this.state.items);
       const newItems = {};
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
@@ -70,6 +75,7 @@ export default class CalendrierScreen extends Component {
         items: newItems
       });
     }, 1000);
+
 
   }
 
