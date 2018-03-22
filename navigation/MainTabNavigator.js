@@ -9,7 +9,6 @@ import EvenementScreen from '../screens/EvenementScreen';
 import CalendrierScreen from '../screens/CalendrierScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
-
 export default TabNavigator(
   {
     Evenement: {
@@ -21,6 +20,7 @@ export default TabNavigator(
     Profile: {
       screen: ProfileScreen,
     },
+
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -42,7 +42,6 @@ export default TabNavigator(
           case 'Profile':
             iconName =
               Platform.OS === 'ios' ? `ios-contact${focused ? '' : '-outline'}` : 'md-contact';
-              break;
         }
         return (
           <Ionicons

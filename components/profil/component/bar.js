@@ -14,14 +14,14 @@ class Bar extends React.Component {
 
        <View style={styles.bar}>
          <View style={[styles.barItem,styles.barseparator]}>
-             <Text style={styles.barTop}>12K</Text>
-             <Text style={styles.barBottom}>Follow</Text>
+             <Text style={styles.barTop}>200</Text>
+             <Text style={styles.barBottom}>Amis</Text>
 
          </View>
 
          <View style={[styles.barItem,styles.barseparator]}>
-             <Text style={styles.barTop}>332</Text>
-             <Text style={styles.barBottom}>Following</Text>
+             <Text style={styles.barTop}>7</Text>
+             <Text style={styles.barBottom}>Posts</Text>
 
          </View>
 
