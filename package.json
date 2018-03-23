@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "engine.io-client": "^3.2.1",
     "expo": "^25.0.0",
     "native-base": "^2.3.10",
     "react": "16.2.0",
@@ -16,13 +17,16 @@
     "react-native-calendars": "^1.17.4",
     "react-native-elements": "^1.0.0-beta3",
     "react-native-fetch-calendar-events": "^0.1.2",
-    "react-native-gifted-chat": "^0.4.1",
+    "react-native-gifted-chat": "^0.4.3",
     "react-native-is-iphonex": "^1.0.1",
     "react-native-material-dropdown": "^0.11.0",
+    "react-native-material-textfield": "^0.12.0",
     "react-navigation": "^1.0.0-beta.27",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "redux-form": "^7.3.0"
+    "redux-form": "^7.3.0",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
     "jest-expo": "^25.0.0"

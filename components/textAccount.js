@@ -3,14 +3,16 @@ import { View} from 'react-native';
 import { Text, Input } from 'react-native-elements';
 
 function textAccount(props) {
-  const { input, fieldName } = props;
+  const { input, fieldName, type } = props;
+  console.log(type);
+  console.log(props);
   return (
     <View>
       <Input
         onChangeText={input.onChange}
         value={input.value}
         placeholder={ fieldName }
-        enablesReturnKeyAutomatically={true}
+        secureTextEntry={type}
       />
     </View>
   );

@@ -15,11 +15,13 @@ class SignInForm extends React.Component {
           name="userName"
           component={textAccount}
           fieldName = "User Name"
+          type= {false}
         />
         <Field
           name="password"
           component={textAccount}
           fieldName = "Password"
+          type= {true}
         />
         <Button
           onPress={this.props.handleSubmit}
