@@ -75,8 +75,8 @@ if (this.state.camera) {
                        />
                 </View>
                   </TouchableOpacity>
-                   <Field style={{height: 40, borderColor: 'gray', borderWidth: 1}} name="userName" fieldName="sajir" component={textInput}/>
-                   <Field style={{height: 40, borderColor: 'gray', borderWidth: 1}} name="Password" fieldName="azerty" component={textInput}/>
+                   <Field style={{height: 40, borderColor: 'gray', borderWidth: 1}} name="userName" fieldName="Sajir" component={textInput}/>
+                   <Field style={{height: 40, borderColor: 'gray', borderWidth: 1}} name="Password" fieldName="*******" component={textInput}/>
                    <Field style={{height: 40, borderColor: 'gray', borderWidth: 1}} name="phone number" fieldName="0606060606" component={textInput}/>
                    <Field style={{height: 40, borderColor: 'gray', borderWidth: 1}} name="date_de_naissance" fieldName="09/06/1992" component={textInput}/>
                    {/* <Field name="ton_choisieversaire" fieldName="ton choisieversaire"  component={textInput} /> */}
@@ -84,7 +84,7 @@ if (this.state.camera) {
                    <View style={{flex: 0, flexDirection: 'row'}}>
 
                    <Field
-                     name="day"
+                     name="day"z
                      component={DropAccount2}
                      labelName = "Day"
                      data={day}
@@ -149,8 +149,7 @@ if (this.state.camera) {
                   <Text style={styles.ButtonText}>Modifier le profil</Text>
                </TouchableOpacity> */}
 
-                  <Text style={styles.name}>sajir khenissi</Text>
-                  <Text style={styles.pos}>-le boss-</Text>
+                  <Text style={styles.name}>Sajir Khenissi</Text>
 
             </View>
 

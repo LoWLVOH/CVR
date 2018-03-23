@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View, Avatar, Text, Modal } from 'react-native';
+import {ImageBackground, Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View, Avatar, Text, Modal } from 'react-native';
 import { List, ListItem, ListView, Header, Button, TextInput } from 'react-native-elements';
 import { WebBrowser } from 'expo';
 import {connect} from 'react-redux';
@@ -18,16 +18,16 @@ export default class EvenementScreen extends React.Component {
    this.state = {
      users: [
        {
-       userName: "Thomas",
-       day: 13,
-       month: "Novembre",
+       userName: "Manon",
+       day: 18,
+       month: "Février",
        year: 1987,
        uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"
      },
      {
-     userName: "Sajir",
-     day: 12,
-     month: "Novembre",
+     userName: "Elodie",
+     day: 22,
+     month: "Février",
      year: 1988,
      uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"
      }
@@ -80,6 +80,7 @@ export default class EvenementScreen extends React.Component {
 
 
   return(
+    <ImageBackground style={styles.headerBackground} source ={require('../components/profil/img/headerPic.jpg')}>
       <View>
         {display}
         <List>
@@ -93,7 +94,7 @@ export default class EvenementScreen extends React.Component {
                 title={l.userName}
                 subtitle={
                  <View>
-                   <Text> Choisiversaire prévu pour le :  </Text>
+                   <Text> Choisiversaire prévu pour le : {l.day} {l.month} </Text>
                  </View>
                  }
                />
@@ -101,6 +102,7 @@ export default class EvenementScreen extends React.Component {
            )}
         </List>
     </View>
+  </ImageBackground>
     )
    }
   }
@@ -120,6 +122,11 @@ const styles = StyleSheet.create( {
     height: 20,
     backgroundColor: '#fff',
   },
+  headerBackground:{
+      flex:1,
+      width:null,
+      alignSelf: 'stretch'
+                  },
   header: {
   backgroundColor: '#6a89cc',
   }

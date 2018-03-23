@@ -19,7 +19,7 @@ class WelcomeScreen extends React.Component {
   super()
     this.signUp = this.signUp.bind(this);
     this.signIn = this.signIn.bind(this);
-    this.state = {userData: []}
+    // this.state = {userData: []}
 }
   static navigationOptions = {
     header: null,
@@ -77,49 +77,49 @@ class WelcomeScreen extends React.Component {
 
 
     signUp(values){
-      var ctx = this;
-      if (values.userName != undefined &&
-          values.phone != undefined &&
-          values.password != undefined &&
-          values.year != undefined &&
-          values.month != undefined &&
-          values.day != undefined &&
-          values.phone.length == 10) {
-              fetch('https://afternoon-coast-15284.herokuapp.com/signUp', {
-          method: 'POST',
-          headers: {'Content-Type':'application/x-www-form-urlencoded'},
-          body: `userName=${values.userName}&phone=${values.phone}&password=${values.password}&year=${values.year}&month=${values.month}&day=${values.day}`
-        }).then(function(response) {
-            return response.json();
-        }).then(function(data) {
-            console.log("log front de data signUp",data);
-            ctx.setState({userData: data});
-        }).catch(function(error) {
-            console.log('Request failed', error)
-        });
-      }
+      // var ctx = this;
+      // if (values.userName != undefined &&
+      //     values.phone != undefined &&
+      //     values.password != undefined &&
+      //     values.year != undefined &&
+      //     values.month != undefined &&
+      //     values.day != undefined &&
+      //     values.phone.length == 10) {
+      //         fetch('https://afternoon-coast-15284.herokuapp.com/signUp', {
+      //     method: 'POST',
+      //     headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      //     body: `userName=${values.userName}&phone=${values.phone}&password=${values.password}&year=${values.year}&month=${values.month}&day=${values.day}`
+      //   }).then(function(response) {
+      //       return response.json();
+      //   }).then(function(data) {
+      //       console.log("log front de data signUp",data);
+      //       // ctx.setState({userData: data});
+      //   }).catch(function(error) {
+      //       console.log('Request failed', error)
+      //   });
+      // }
       this.props.isLog();
-      this.props.validId();
+      // this.props.validId();
     }
 
 
 /////////////////////condition et fetch signIn///////////////////
     signIn(values){
-      var ctx = this;
-      fetch('https://afternoon-coast-15284.herokuapp.com/signIn', {
-  method: 'POST',
-  headers: {'Content-Type':'application/x-www-form-urlencoded'},
-  body: `userName=${values.userName}&password=${values.password}`
-}).then(function(response) {
-    return response.json();
-}).then(function(data) {
-    console.log("log front de data signIn" , data);
-    ctx.setState({userData: data});
-}).catch(function(error) {
-    console.log('Request failed', error)
-});
+//       var ctx = this;
+//       fetch('https://afternoon-coast-15284.herokuapp.com/signIn', {
+//   method: 'POST',
+//   headers: {'Content-Type':'application/x-www-form-urlencoded'},
+//   body: `userName=${values.userName}&password=${values.password}`
+// }).then(function(response) {
+//     return response.json();
+// }).then(function(data) {
+//     console.log("log front de data signIn" , data);
+//     ctx.setState({userData: data});
+// }).catch(function(error) {
+//     console.log('Request failed', error)
+// });
     this.props.isLog();
-    this.props.validId();
+    // this.props.validId();
     }
 
   render() {
@@ -157,9 +157,9 @@ function mapDispatchToProps(dispatch) {
     isLog: function() {
         dispatch( {type: 'isLog'} )
     },
-    validId: function() {
-        dispatch( {type: 'validId', userData: "this.state.userData"})
-    }
+    // validId: function() {
+    //     dispatch( {type: 'validId', userData: "this.state.userData"})
+    // }
   }
 }
 
